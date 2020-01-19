@@ -10,7 +10,7 @@ import com.project.demoSpring.entities.Order;
 import com.project.demoSpring.entities.Product;
 
 @Embeddable
-public class OrdemItemPk implements Serializable{
+public class OrderItemPk implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -55,7 +55,7 @@ public class OrdemItemPk implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		OrdemItemPk other = (OrdemItemPk) obj;
+		OrderItemPk other = (OrderItemPk) obj;
 		if (order == null) {
 			if (other.order != null)
 				return false;

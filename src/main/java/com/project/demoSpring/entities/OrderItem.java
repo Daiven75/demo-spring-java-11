@@ -6,24 +6,25 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import com.project.demoSpring.entities.pk.OrdemItemPk;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.project.demoSpring.entities.pk.OrderItemPk;
 
 @Entity
 @Table(name = "tb_order_item")
-public class OrdemItem implements Serializable{
+public class OrderItem implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
-	private OrdemItemPk id;
+	private OrderItemPk id = new OrderItemPk();
 	
 	private Integer quantity;
 	
 	private Double price;
 	
-	public OrdemItem() {
+	public OrderItem() {
 	}	
-	public OrdemItem(Order order, Product product, Integer quantity, Double price) {
+	public OrderItem(Order order, Product product, Integer quantity, Double price) {
 		super();
 		id.setOrder(order);
 		id.setProduct(product);
@@ -31,6 +32,7 @@ public class OrdemItem implements Serializable{
 		this.price = price;
 	}
 	
+	@JsonIgnore
 	public Order getOrder() {
 		return id.getOrder();
 	}
@@ -79,7 +81,7 @@ public class OrdemItem implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		OrdemItem other = (OrdemItem) obj;
+		OrderItem other = (OrderItem) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
